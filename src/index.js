@@ -96,7 +96,6 @@ const App = inject('store')(
         {
           sensors && keys && keys.filter(key=>key ==='sensor1').map(key =>
             <div  key={key}>
-              <p>min: {sensors.get(key).minHeap.data[0]} | max: {sensors.get(key).maxHeap.data[0]}</p>
               index.js - protected
               <Chart
                 key={key}
