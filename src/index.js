@@ -35,10 +35,6 @@ const RootStore = types.model({
       self.addMeasurement(out)
     }, 1000);
   },
-  updateSensors(key, value) {
-    self.sensors.set(key, value);
-    console.log(self.sensors)
-  },
 
   addMeasurement(incomingData) {
     const keys = [...self.sensors.keys()];
