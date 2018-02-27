@@ -44,10 +44,8 @@ const RootStore = types.model({
     const keys = [...self.sensors.keys()];
 
     if (keys.length === 0) {
-      for (const key in incomingData) {
-        // const d = new Sensor(10);
-        // d.add(incomingData[key]); // measurement
-        // self.updateSensors(key, d);
+      for (const key in incomingData) { 
+        // not needed in this example
       }
     } else {
       for (const key in incomingData) {
@@ -55,9 +53,7 @@ const RootStore = types.model({
         if(keys.indexOf(key) > -1){
           self.sensors.get(key).add(incomingData[key]) 
         } else {
-          // const d = new Sensor(10);
-          // d.add(incomingData[key]); // measurement
-          // self.updateSensors(key, d);
+          // not needed in this example
         }
       }
     }
@@ -89,7 +85,7 @@ const App = inject('store')(
   observer(({ store }) => {
     const sensors = /*toJS(*/store.sensors//.toJSON(); //toJS is too expensive
     const keys = [ ...sensors.keys() ];
-    console.log(store.sensors.get('sensor1').queue.data.slice())
+    console.log([...store.sensors.get('sensor1').queue.data.slice()])
     return (
       <div>
         <p>count: {sensors.get('sensor1') && sensors.get('sensor1').queue.data.length}</p>
