@@ -20,7 +20,7 @@ const RootStore = types.model({
     const sensorIds = ['sensor1', 'sensor2', 'sensor3','sensor4', 'sensor5', 'sensor6','sensor7', 'sensor8', 'sensor9', 'sensor10'];
     
     for(let sensor of sensorIds) {
-      self.sensors.set(sensor, new Sensor(2000));
+      self.sensors.set(sensor, new Sensor(10));
     }
 
     setInterval(function(){ 
@@ -42,12 +42,12 @@ const RootStore = types.model({
 
   addMeasurement(incomingData) {
     const keys = [...self.sensors.keys()];
-    // add new incoming timestamped device data to existing measurements
+
     if (keys.length === 0) {
       for (const key in incomingData) {
-        const d = new Sensor(2000);
-        d.add(incomingData[key]); // measurement
-        self.updateSensors(key, d);
+        // const d = new Sensor(10);
+        // d.add(incomingData[key]); // measurement
+        // self.updateSensors(key, d);
       }
     } else {
       for (const key in incomingData) {
@@ -55,9 +55,9 @@ const RootStore = types.model({
         if(keys.indexOf(key) > -1){
           self.sensors.get(key).add(incomingData[key]) 
         } else {
-          const d = new Sensor(2000);
-          d.add(incomingData[key]); // measurement
-          self.updateSensors(key, d);
+          // const d = new Sensor(10);
+          // d.add(incomingData[key]); // measurement
+          // self.updateSensors(key, d);
         }
       }
     }
@@ -89,7 +89,7 @@ const App = inject('store')(
   observer(({ store }) => {
     const sensors = /*toJS(*/store.sensors//.toJSON(); //toJS is too expensive
     const keys = [ ...sensors.keys() ];
-    console.log(store)
+    console.log(store.sensors.get('sensor1').queue.data.slice())
     return (
       <div>
         <p>count: {sensors.get('sensor1') && sensors.get('sensor1').queue.data.length}</p>
