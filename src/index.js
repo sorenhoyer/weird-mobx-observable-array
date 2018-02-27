@@ -96,7 +96,7 @@ const App = inject('store')(
                 subtitle=''
                 xAxisTitle='Time'
                 yAxisTitle='Level'
-                data={sensors.get(key).queue.data.slice()}
+                data={toJS(sensors.get(key).queue.data, false)}
                 overlayCharts={[]}
                 plotOptions={plotOptions}
               />
